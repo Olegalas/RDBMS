@@ -1,9 +1,7 @@
 package com.dex.data.view;
 
-import com.dex.data.dao.UserDao;
+import com.dex.data.controller.Controller;
 import com.dex.data.model.User;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
 
@@ -14,10 +12,10 @@ public class Run {
 
     public static void main(String[] args) {
 
-        ApplicationContext context = new ClassPathXmlApplicationContext("spring-context.xml");
-        UserDao userDao = (UserDao) context.getBean("userDao");
+//        ApplicationContext context = new ClassPathXmlApplicationContext("spring-context.xml");
+//        UserDao userDao = (UserDao) context.getBean("userDao");
 
-        List<User> users = userDao.selectAllUsers();
+        List<User> users = Controller.getInstance().getAllUsers("DEX");
 
         System.out.println(users);
     }

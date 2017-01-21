@@ -1,12 +1,23 @@
 package com.dex.data.model;
 
+import javax.persistence.*;
+
 /**
  * Created by dexter on 09.01.17.
  */
+@Entity
+@Table(name = "users")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     public int id;
+
+    @Column(name = "login")
     public String login;
+
+    @Column(name = "pass")
     public String pass;
 
     public User(int id, String login, String pass) {
@@ -16,6 +27,30 @@ public class User {
     }
 
     public User() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 
     @Override

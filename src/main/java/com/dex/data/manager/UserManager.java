@@ -1,5 +1,6 @@
 package com.dex.data.manager;
 
+import com.dex.data.dao.HibernateUserDao;
 import com.dex.data.dao.UserDao;
 import com.dex.data.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,15 +13,15 @@ import java.util.List;
  */
 public class UserManager {
 
-    private UserDao userDao;
+    private HibernateUserDao userDao;
 
 
-    public UserManager() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
-        userDao = new UserDao();
+    public UserManager(){
+        userDao = new HibernateUserDao();
     }
 
-    public List<User> getAllUsers(){
-        return userDao.selectAllUsers();
+    public List<User> getAllUsers(String login){
+        return userDao.selectAllUsers2(login);
     }
 
 }
