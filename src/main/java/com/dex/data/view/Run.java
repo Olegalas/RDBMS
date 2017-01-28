@@ -15,9 +15,11 @@ public class Run {
 //        ApplicationContext context = new ClassPathXmlApplicationContext("spring-context.xml");
 //        UserDao userDao = (UserDao) context.getBean("userDao");
 
-        List<User> users = Controller.getInstance().getAllUsers("DEX");
+        Controller controller = Controller.getInstance();
 
-        System.out.println(users);
+        controller.deRegistration("Nick", "newPassword");
+
+
     }
 
 }

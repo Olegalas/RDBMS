@@ -23,8 +23,36 @@ public class Controller {
         return instance;
     }
 
-    public List<User> getAllUsers(String login){
-        return manager.getAllUsers(login);
+    public User login(String login, String pass){
+
+        User user =  manager.login(login, pass);
+        System.out.println("User entered : " + user);
+
+        return user;
+    }
+
+    public User registration(String login, String pass){
+
+        User user = manager.createUser(login, pass);
+        System.out.println("User was successfully created : " + user);
+
+        return user;
+    }
+
+    public User changePass(String login, String oldPass, String newPass){
+
+        User user = manager.changePass(login, oldPass, newPass);
+        System.out.println("Password was successfully changed : " + user);
+
+        return user;
+    }
+
+    public User deRegistration(String login, String pass){
+
+        User user = manager.removeUser(login, pass);
+        System.out.println("User was successfully removed : " + user);
+
+        return user;
     }
 
 }
