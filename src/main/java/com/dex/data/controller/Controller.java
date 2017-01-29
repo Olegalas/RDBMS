@@ -1,6 +1,7 @@
 package com.dex.data.controller;
 
 import com.dex.data.manager.UserManager;
+import com.dex.data.model.Notification;
 import com.dex.data.model.User;
 
 import java.sql.SQLException;
@@ -55,4 +56,12 @@ public class Controller {
         return user;
     }
 
+    public User sendMessage(String login, String message, Notification.Type type) {
+
+        User user = manager.sendMessage(login, message, type);
+        System.out.println("Message was successfully sent. Message : " + user.getNotifications().stream().filter(e -> e.getMessage().equals(message)).findAny().orElse(null));
+        System.out.println("User : " + user);
+
+        return user;
+    }
 }

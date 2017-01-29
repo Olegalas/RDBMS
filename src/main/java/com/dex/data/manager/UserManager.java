@@ -3,6 +3,7 @@ package com.dex.data.manager;
 import com.dex.data.dao.HibernateUserDao;
 import com.dex.data.dao.UserDao;
 import com.dex.data.dao.UserDaoI;
+import com.dex.data.model.Notification;
 import com.dex.data.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -71,4 +72,24 @@ public class UserManager {
         throw new RuntimeException("wrong login or password");
     }
 
+    public User sendMessage(String login, String message, Notification.Type type) {
+
+        User user = userDao.getUser(login);
+        if(user == null){
+            user = new User(-1 , "not found", "not found");
+            return user;
+        }
+
+        Notification notification = new Notification();
+        notification.setType(type);
+        notification.setMessage(message);
+        notification.setUser(user);
+        notification.setUserId(user.id);
+
+        user.getNotifications().add(notification);
+
+        userDao.updateUser(user);
+
+        return user;
+    }
 }

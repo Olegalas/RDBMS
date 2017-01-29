@@ -1,6 +1,7 @@
 package com.dex.data.view;
 
 import com.dex.data.controller.Controller;
+import com.dex.data.model.Notification;
 import com.dex.data.model.User;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class Run {
 
         Controller controller = Controller.getInstance();
 
-        controller.login("DEX", "pass");
+        controller.sendMessage("ALEX", "Some message", Notification.Type.INFO);
 
     }
 
