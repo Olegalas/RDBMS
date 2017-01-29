@@ -1,6 +1,4 @@
-CREATE DATABASE userDataBase;
-
-USE userDataBase;
+# CREATE DATABASE userDataBase;
 
 CREATE TABLE users (
 
@@ -11,6 +9,21 @@ CREATE TABLE users (
 
 );
 
+CREATE TABLE notification (
+
+  id INT NOT NULL AUTO_INCREMENT,
+  type VARCHAR (30),
+  message VARCHAR (250),
+  user_id INT,
+  PRIMARY KEY (id)
+
+);
+
+INSERT INTO notification (type, message, user_id)
+    VALUES ('INFO','Hi DEX', 1);
+
+INSERT INTO notification (type, message, user_id)
+    VALUES ('WARN','Some warn notification', 1);
 
 INSERT INTO users (login, pass)
 VALUES ('DEX', 'pass');
