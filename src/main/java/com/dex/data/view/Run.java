@@ -17,8 +17,7 @@ public class Run {
 
         Controller controller = Controller.getInstance();
 
-        controller.deRegistration("Nick", "newPassword");
-
+        controller.login("DEX", "pass");
 
     }
 
