@@ -1,9 +1,7 @@
 package com.dex.data.dao;
 
 import com.dex.data.model.User;
-import com.dex.data.util.HibernateUtil;
 import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
 
@@ -12,7 +10,7 @@ import java.util.List;
  */
 public class HibernateUserDao implements UserDaoI{
 
-    private Session session = HibernateUtil.getSessionFactory().openSession();
+    private Session session;
 
     public User getUser(String login) {
         String hql = "FROM User U WHERE U.login = :login ";
