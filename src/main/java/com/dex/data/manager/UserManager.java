@@ -3,12 +3,19 @@ package com.dex.data.manager;
 import com.dex.data.dao.UserDaoI;
 import com.dex.data.model.Notification;
 import com.dex.data.model.User;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
 
 /**
  * Created by dexter on 09.01.17.
  */
+@Service
+@Transactional
 public class UserManager {
 
+    @Resource(name = "hibernateUserDao")
     private UserDaoI userDao;
 
     public User createUser(String login, String pass) {

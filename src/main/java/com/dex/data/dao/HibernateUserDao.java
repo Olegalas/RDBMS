@@ -1,44 +1,42 @@
 package com.dex.data.dao;
 
 import com.dex.data.model.User;
-import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * Created by dexter on 21.01.17.
  */
+@Repository
 public class HibernateUserDao implements UserDaoI{
 
-    private Session session;
+    @Autowired
+    private SessionFactory sessionFactory;
 
     public User getUser(String login) {
         String hql = "FROM User U WHERE U.login = :login ";
-        return (User) session.createQuery(hql).setParameter("login", login).getSingleResult();
+        return (User) sessionFactory.getCurrentSession().createQuery(hql).setParameter("login", login).getSingleResult();
     }
 
     @SuppressWarnings("unchecked")
     public List<User> getAllUsers() {
         String hql = "FROM User U WHERE U.login = :login ";
-        return session.createQuery(hql).list();
+        return sessionFactory.getCurrentSession().createQuery(hql).list();
     }
 
     public void updateUser(User user) {
-        session.beginTransaction();
-        session.update(user);
-        session.getTransaction().commit();
+        sessionFactory.getCurrentSession().update(user);
     }
 
     public void saveUser(User user) {
-        session.beginTransaction();
-        session.persist(user);
-        session.getTransaction().commit();
+        sessionFactory.getCurrentSession().persist(user);
     }
 
     public void removeUser(User user) {
-        session.beginTransaction();
-        session.delete(user);
-        session.getTransaction().commit();
+        sessionFactory.getCurrentSession().delete(user);
     }
 
 }

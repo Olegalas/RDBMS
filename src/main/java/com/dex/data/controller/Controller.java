@@ -3,12 +3,17 @@ package com.dex.data.controller;
 import com.dex.data.manager.UserManager;
 import com.dex.data.model.Notification;
 import com.dex.data.model.User;
+import org.springframework.stereotype.Component;
+
+import javax.inject.Inject;
 
 /**
  * Created by dexter on 09.01.17.
  */
+@Component
 public class Controller {
 
+    @Inject
     private UserManager manager;
 
     public User login(String login, String pass){
