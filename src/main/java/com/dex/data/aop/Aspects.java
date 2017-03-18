@@ -1,5 +1,6 @@
 package com.dex.data.aop;
 
+import com.dex.data.dto.UserDTO;
 import com.dex.data.model.Notification;
 import com.dex.data.model.User;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -27,7 +28,7 @@ public class Aspects {
 //    }
 
     @Around(value = "pointCut()")
-    public User around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+    public UserDTO around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
 
         String methodName = proceedingJoinPoint.getSignature().getName();
         System.out.println("Started method : " + methodName);
@@ -36,7 +37,7 @@ public class Aspects {
             System.out.println("arg : " + arg);
         }
 
-        User user = (User) proceedingJoinPoint.proceed();
+        UserDTO user = (UserDTO) proceedingJoinPoint.proceed();
 
         System.out.println("Message was sent to : " + user);
 

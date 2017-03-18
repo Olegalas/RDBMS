@@ -10,18 +10,18 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  */
 public class Run {
 
-    public static void main(String[] args) {
-
-//        ApplicationContext context = new ClassPathXmlApplicationContext("spring-context.xml");
-//        UserDao userDao = (UserDao) context.getBean("userDao");
-
-//        Controller controller = Context.getBean(Controller.class);
-
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-        Controller controller = context.getBean(Controller.class);
-
-        controller.sendMessage("ALEX", "Some message", Notification.Type.INFO);
-
-    }
+//    public static void main(String[] args) {
+//
+////        ApplicationContext context = new ClassPathXmlApplicationContext("spring-context.xml");
+////        UserDao userDao = (UserDao) context.getBean("userDao");
+//
+////        Controller controller = Context.getBean(Controller.class);
+//
+//        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+//        Controller controller = context.getBean(Controller.class);
+//
+//        controller.sendMessage("ALEX", "Some message", Notification.Type.INFO);
+//
+//    }
 
 }

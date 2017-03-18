@@ -1,12 +1,16 @@
 package com.dex.data.manager;
 
 import com.dex.data.dao.UserDaoI;
+import com.dex.data.dto.UserDTO;
 import com.dex.data.model.Notification;
 import com.dex.data.model.User;
+import com.dex.data.transformers.UserTransformer;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import javax.swing.text.html.Option;
+import java.util.Optional;
 
 /**
  * Created by dexter on 09.01.17.
@@ -67,24 +71,20 @@ public class UserManager {
         throw new RuntimeException("wrong login or password");
     }
 
-    public User sendMessage(String login, String message, Notification.Type type) {
+    public UserDTO sendMessage(String login, String message, Notification.Type type) {
+        Optional<User> user = Optional.ofNullable(userDao.getUser(login));
+        user.ifPresent(u -> {
+            Notification notification = new Notification();
+            notification.setType(type);
+            notification.setMessage(message);
+            notification.setUser(u);
+            notification.setUserId(u.id);
 
-        User user = userDao.getUser(login);
-        if(user == null){
-            user = new User(-1 , "not found", "not found");
-            return user;
-        }
+            u.getNotifications().add(notification);
 
-        Notification notification = new Notification();
-        notification.setType(type);
-        notification.setMessage(message);
-        notification.setUser(user);
-        notification.setUserId(user.id);
+            userDao.updateUser(u);
+        });
 
-        user.getNotifications().add(notification);
-
-        userDao.updateUser(user);
-
-        return user;
+        return user.map(UserTransformer.toDTO).orElseGet(UserDTO::new);
     }
 }
